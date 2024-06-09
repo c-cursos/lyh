@@ -1,0 +1,301 @@
+
+
+<style>
+   :root {
+      background: #f5f5f5;
+      color: #333;
+   }
+   
+   body {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 100dvh;
+      margin: 0;
+   }
+   
+   section, [section] {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+   }
+   
+   tt {
+      display: flex;
+      align-items: center;
+      font-size: 2.5em;
+      font-weight: bold;
+   }
+   
+   [section]:has( form ) {
+      padding: 3rem 0;
+   }
+   
+   form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      width: calc( 95% - 10dvw );
+      margin: 0 auto;
+      padding: 5dvw;
+      background: #fff;
+      border-radius: 9px;
+   }
+   
+   label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+   }
+   label > t {
+      font-size: .8em;
+      padding-left: 8px;
+   }
+   label > t > msg {}
+   label > t > msg > content {
+      font-size: 1em;
+      font-weight: bold;
+      padding: 0 8px;
+      border-radius: 5px;
+      background-color: #9775;
+      color: #977;
+   }
+   
+   input {
+      border-radius: 9px;
+      border: transparent;
+      background: #f5f5f5;
+      height: 52px;
+      padding: 8px;
+      font-size: 1.1em;
+   }
+   
+   input[type="submit"] {
+      background: #fc0fc0;
+      color: #fff;
+      font-weight: bold;
+   }
+   
+   tabela {
+      background: #e5e5e5;
+      /*width: calc( 100dvw - 4dvw );*/
+      padding: 2dvw;
+      overflow-x: scroll;
+   }
+   tabela:nth-child( 3 ) {
+      min-height: 50vw;
+   }
+   
+   [section] > header {
+      padding: 3rem 0;
+   }
+   [section] > header > tt {
+      justify-content: center;
+   }
+   
+   table {
+      border-radius: 9px;
+      background: #f5f5f5;
+      width: calc( 100dvw - 4dvw );
+      overflow: scroll;
+   }
+   
+   thead {
+      background: #fc0fc0;
+      padding: 5px 0;
+      height: 40px;
+      gap: 1px;
+   }
+   thead > * {
+      background: #fff;
+   }
+</style>
+
+<formulario section>
+   <form id="form">
+      <header>
+         <tt>Cadastro de usuários</tt>
+      </header>
+      <label id="label_input_id">
+         <t>id </t>
+         <input id="input_id" name="id" type="number" placeholder="id">
+      </label>
+      <label id="label_input_primeiroNome">
+         <t>Primeiro nome </t>
+         <input id="input_primeiroNome" name="primeiroNome" type="text" placeholder="primeiro nome">
+      </label>
+      <label id="label_input_sobrenome">
+         <t>Sobrenome </t>
+         <input id="input_sobrenome" name="sobrenome" type="text" placeholder="sobrenome">
+      </label>
+      <label id="label_input_email">
+         <t>Email </t>
+         <input id="input_email" name="email" type="email" placeholder="email">
+      </label>
+      <label id="label_input_senha">
+         <t>Senha </t>
+         <input id="input_senha" name="senha" type="text" placeholder="senha">
+      </label>
+      <hr />
+      <input type="submit" value="CADASTRAR">
+   </form>
+</formulario>
+
+<tabela section>
+   <header>
+      <tt>Tabela de usuários</tt>
+   </header>
+</tabela>
+
+<tabela section>
+   <content>
+      <table>
+         <thead>
+            <th colspan="1">id</th>
+            <th colspan="2">primeiro nome</th>
+            <th colspan="2">sobrenome</th>
+            <th colspan="2">email</th>
+            <th colspan="2">senha</th>
+         </thead>
+         <tbody id="body_table">
+            <tr>
+               <td>${ usuário.id }</td>
+               <td>${ usuário.primeiroNome }</td>
+               <td>${ usuário.sobrenome }</td>
+               <td>${ usuário.email }</td>
+               <td>${ usuário.senha }</td>
+            </tr>
+         </tbody>
+      </table>
+   </content>
+</tabela>
+
+<script>
+   "use strict";
+   
+   let 
+      _ = ( ...v ) => console.log( ...v )
+      ,
+      $ = v => document.querySelector( v )
+      ,
+      $$ = v => document.querySelectorAll( v )
+   ;
+   
+   const 
+      usuários = []
+   ;
+   
+   function cadastrarUsuário() {
+      let 
+         inputs = []
+      ;
+      //_( "1: \n", inputs );
+      inputs = [ 
+         ...$$( "form input[type='number']" ),
+         ...$$( "form input[type='text']" ), 
+         ...$$( "form input[type='email']" ),
+      ];
+      /*_( "2: \n", inputs );
+      inputs.forEach( i => _( "i: ", i.value = "13" ) );*/
+      
+      
+      function FormValidation() {
+         const validInputs = [];
+         let res = false;
+         
+         inputs.forEach( i => {
+            if( i.value === "" ) {
+               if( 
+                  $( `#label_${ i.getAttribute( 'id' ) } > t > msg` )
+               ) {
+                  $( `#label_${ i.getAttribute( 'id' ) } > t > msg` ).innerHTML = "";
+                  $( `#label_${ i.getAttribute( 'id' ) } > t > msg` ).innerHTML += "<content>oi</content>";
+               } else {
+                  $( `#label_${ i.getAttribute( 'id' ) } > t` ).innerHTML += "<msg><content>oi</content></msg>";
+               }
+            } else {
+               validInputs.push( i );
+               if( 
+                  $( `#label_${ i.getAttribute( 'id' ) } > t > msg` )
+               ) {
+                  $( `#label_${ i.getAttribute( 'id' ) } > t > msg` ).innerHTML = "";
+               }
+            }
+         } );
+         if( validInputs.length == inputs.length ) {
+            _( `validInputs: ${ validInputs.length }`, `\ninputs: ${ inputs.length }` );
+            res = true;
+         } else {
+            _( `validInputs: ${ validInputs.length }`, `\ninputs: ${ inputs.length }` );
+         }
+         _( "return res: ", res );
+         return( res );
+      }
+      
+      function ClearForm() {
+         inputs.forEach( i => {
+            i.value = "";
+         } );
+      }
+      
+      function CreateUser() {
+         const user = {};
+         
+         inputs.forEach( i => {
+            eval( `user.${ i.name } = "${ i.value }"` );
+         } );
+         
+         _( user );
+         usuários.push( user );
+         ClearForm();
+         UpdateTable();
+      }
+      
+      function UpdateTable() {
+         ClearTable();
+         usuários.forEach( usuário => {
+            body_table.innerHTML += `
+               <tr>
+                  <td colspan="1">${ usuário.id }</td>
+                  <td colspan="2">${ usuário.primeiroNome }</td>
+                  <td colspan="2">${ usuário.sobrenome }</td>
+                  <td colspan="2">${ usuário.email }</td>
+                  <td colspan="2">${ usuário.senha }</td>
+               </tr>
+            `;
+         } );
+      }
+      
+      form.addEventListener(
+         "submit",
+         () => {
+            event.preventDefault();
+            
+            let passFormValidation = FormValidation();
+            
+            if( passFormValidation ) {
+               _( "passFormValidation: ok" );
+               CreateUser();
+               _( "usuários: \n", usuários );
+            } else {
+               _( "passFormValidation: failed" );
+            }
+            
+         }
+      );
+   }
+   
+   function ClearTable() {
+      body_table.innerHTML = "";
+   }
+   
+   function callback() {
+      cadastrarUsuário();
+      ClearTable();
+   }
+   
+   window.addEventListener(
+      "load",
+      callback
+   );
+</script>
