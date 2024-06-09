@@ -1,0 +1,67 @@
+
+
+<header>
+   <title>Tabela com js</title>
+   
+   <link href="./src/stylesheets/tabela.css" rel="stylesheet">
+   <script src="./src/scripts/tabela.js" defer></script>
+</header>
+
+<formulario section>
+   <form id="form">
+      <header>
+         <tt>Cadastro de usuários</tt>
+      </header>
+      <label id="label_input_id">
+         <t>id </t>
+         <input id="input_id" name="id" type="number" placeholder="id">
+      </label>
+      <label id="label_input_primeiroNome">
+         <t>Primeiro nome </t>
+         <input id="input_primeiroNome" name="primeiroNome" type="text" placeholder="primeiro nome">
+      </label>
+      <label id="label_input_sobrenome">
+         <t>Sobrenome </t>
+         <input id="input_sobrenome" name="sobrenome" type="text" placeholder="sobrenome">
+      </label>
+      <label id="label_input_email">
+         <t>Email </t>
+         <input id="input_email" name="email" type="email" placeholder="email">
+      </label>
+      <label id="label_input_senha">
+         <t>Senha </t>
+         <input id="input_senha" name="senha" type="text" placeholder="senha">
+      </label>
+      <hr />
+      <input type="submit" value="CADASTRAR">
+   </form>
+</formulario>
+
+<tabela section>
+   <header>
+      <tt>Tabela de usuários</tt>
+   </header>
+</tabela>
+
+<tabela section>
+   <content>
+      <table>
+         <thead>
+            <th colspan="1">id</th>
+            <th colspan="2">primeiro nome</th>
+            <th colspan="2">sobrenome</th>
+            <th colspan="2">email</th>
+            <th colspan="2">senha</th>
+         </thead>
+         <tbody id="body_table">
+            <tr>
+               <td>${ usuário.id }</td>
+               <td>${ usuário.primeiroNome }</td>
+               <td>${ usuário.sobrenome }</td>
+               <td>${ usuário.email }</td>
+               <td>${ usuário.senha }</td>
+            </tr>
+         </tbody>
+      </table>
+   </content>
+</tabela>

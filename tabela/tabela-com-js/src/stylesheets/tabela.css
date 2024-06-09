@@ -1,0 +1,110 @@
+
+
+:root {
+   background: #f5f5f5;
+   color: #333;
+}
+
+body {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   min-height: 100dvh;
+   margin: 0;
+}
+
+section, [section] {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+tt {
+   display: flex;
+   align-items: center;
+   font-size: 2.5em;
+   font-weight: bold;
+}
+
+[section]:has( form ) {
+   padding: 3rem 0;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   gap: 1.1rem;
+   width: calc( 95% - 10dvw );
+   margin: 0 auto;
+   padding: 5dvw;
+   background: #fff;
+   border-radius: 9px;
+}
+
+label {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+label > t {
+   font-size: .8em;
+   padding-left: 8px;
+}
+label > t > msg {}
+label > t > msg > content {
+   font-size: 1em;
+   font-weight: bold;
+   padding: 0 8px;
+   border-radius: 5px;
+   background-color: #9775;
+   color: #977;
+}
+
+input {
+   border-radius: 9px;
+   border: transparent;
+   background: #f5f5f5;
+   height: 52px;
+   padding: 8px;
+   font-size: 1.1em;
+}
+
+input[type="submit"] {
+   background: #fc0fc0;
+   color: #fff;
+   font-weight: bold;
+}
+
+tabela {
+   background: #e5e5e5;
+   /*width: calc( 100dvw - 4dvw );*/
+   padding: 2dvw;
+   overflow-x: scroll;
+}
+tabela:nth-child( 3 ) {
+   min-height: 50vw;
+}
+
+[section] > header {
+   padding: 3rem 0;
+}
+[section] > header > tt {
+   justify-content: center;
+}
+
+table {
+   border-radius: 9px;
+   background: #f5f5f5;
+   width: calc( 100dvw - 4dvw );
+   overflow: scroll;
+}
+
+thead {
+   background: #fc0fc0;
+   padding: 5px 0;
+   height: 40px;
+   gap: 1px;
+}
+thead > * {
+   background: #fff;
+}
