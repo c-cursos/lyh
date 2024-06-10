@@ -34,6 +34,7 @@
       </label>
       <hr />
       <input type="submit" value="CADASTRAR">
+      <input id="btn_loadUsuários" type="button" value="Load Usuários">
    </form>
 </formulario>
 
@@ -55,13 +56,43 @@
          </thead>
          <tbody id="body_table">
             <tr>
-               <td>${ usuário.id }</td>
-               <td>${ usuário.primeiroNome }</td>
-               <td>${ usuário.sobrenome }</td>
-               <td>${ usuário.email }</td>
-               <td>${ usuário.senha }</td>
+               <td colspan="1">${ usuário.id }</td>
+               <td colspan="2">${ usuário.primeiroNome }</td>
+               <td colspan="2">${ usuário.sobrenome }</td>
+               <td colspan="2">${ usuário.email }</td>
+               <td colspan="2">${ usuário.senha }</td>
             </tr>
          </tbody>
       </table>
    </content>
 </tabela>
+
+<wave-text-anim section>
+   <style>
+      wave-item {
+         color: #fff;
+         font-size: 6rem;
+         font-weight: 900;
+         display: inline-block;
+         position: absolute;
+         bottom: 0;
+         -webkit-animation: text 1050ms ease-in infinite;
+         transform: translatez( 0 );
+      }
+   </style>
+   <container>
+      <coast>
+         <wave-rel-wrap>
+            <wave></wave>
+         </wave-rel-wrap>
+      </coast>
+      <coast delay>
+         <wave-rel-wrap>
+            <wave delay></wave>
+         </wave-rel-wrap>
+      </coast>
+      <wave-item text="C">C</wave-item>
+      <wave-item text="é">é</wave-item>
+      <wave-item text="o">o</wave-item>
+   </container>
+</wave-text-anim>
