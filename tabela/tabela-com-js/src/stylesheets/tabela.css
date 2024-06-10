@@ -97,16 +97,18 @@ table {
    background: #f5f5f5;
    width: calc( 100dvw - 4dvw );
    padding: 2px;
-   background: #fc0fc0;
+   /* background: #fc0fc0; */
    overflow: scroll;
-}
-
+   }
+   
 thead {
    padding: 5px 0;
    height: 40px;
    gap: 1px;
    border-radius: 9px;
    overflow: hidden;
+   background: #fc0fc0;
+   border-radius: 9px ;
    color: #fff;
 }
 thead > * {
@@ -117,5 +119,5 @@ tbody > tr:nth-child( odd ) {
 }
 
 tbody > tr:nth-child( even ) {
-   background: #f5f5f5;
+   background: #ddd;
 }
