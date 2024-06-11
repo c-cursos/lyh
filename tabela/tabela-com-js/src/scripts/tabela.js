@@ -29,7 +29,7 @@ function GetInputs() {
    inputs.forEach( i => _( "i: ", i.value = "13" ) );*/
 }
 
-function cadastrarUsuário() {
+function CadastrarUsuário() {
    GetInputs();
    
    form.addEventListener(
@@ -39,13 +39,17 @@ function cadastrarUsuário() {
          
          let passFormValidation = FormValidation();
          
-         if( passFormValidation ) {
+         /*if( passFormValidation ) {
             _( "passFormValidation: ok" );
             CreateUser();
             _( "usuários: \n", usuários );
          } else {
             _( "passFormValidation: failed" );
-         }
+         }*/
+         passFormValidation ? 
+            CreateUser()
+            : 
+            _( "passFormValidation: failed" );
          
       }
    );
@@ -151,7 +155,7 @@ function LoadUsers( v ) {
 }
 
 function callback() {
-   cadastrarUsuário();
+   CadastrarUsuário();
    ClearTable();
    LoadUsers();
 }
